@@ -1,0 +1,11 @@
+your-project/
+├─ app.py
+├─ requirements.txt
+├─ Dockerfile
+├─ render.yaml                 # (optional but nice on Render)
+├─ .env.example
+├─ templates/
+│  └─ index.html
+└─ static/
+   ├─ script.js
+   └─ styles.css
