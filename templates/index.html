@@ -1,45 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mood Journal</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="/static/styles.css" />
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-  <main class="container">
-    <h1>Mood Journal</h1>
+<body class="bg-gradient-to-r from-green-100 via-blue-50 to-purple-100 min-h-screen font-[Poppins]">
 
-    <section class="card">
-      <h2>Add Entry</h2>
-      <form id="entry-form">
-        <label>
-          Mood
-          <select id="mood">
-            <option>Happy</option>
-            <option>Okay</option>
-            <option>Sad</option>
-            <option>Angry</option>
-            <option>Anxious</option>
-          </select>
-        </label>
+  <!-- Navbar -->
+  <header class="bg-white shadow-md p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-indigo-600">🌿 Mood Journal</h1>
+    <nav>
+      <a href="#journal" class="mx-3 text-gray-600 hover:text-indigo-600">Journal</a>
+      <a href="#trends" class="mx-3 text-gray-600 hover:text-indigo-600">Trends</a>
+    </nav>
+  </header>
 
-        <label>
-          Note
-          <textarea id="note" rows="3" placeholder="How are you feeling?"></textarea>
-        </label>
+  <!-- Hero Section -->
+  <section class="text-center py-10">
+    <h2 class="text-3xl font-semibold text-gray-700">Track your emotions, find your balance</h2>
+    <p class="mt-2 text-gray-500">Write. Reflect. Grow.</p>
+  </section>
 
-        <button type="submit">Save Entry</button>
-        <p id="form-msg" class="muted"></p>
-      </form>
-    </section>
+  <!-- Journal Entry Form -->
+  <section id="journal" class="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-6 my-8">
+    <h3 class="text-xl font-semibold mb-4 text-gray-700">New Journal Entry</h3>
+    <form id="journal-form" class="flex flex-col gap-4">
+      <textarea id="entry" rows="4" class="w-full p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-indigo-300" placeholder="How are you feeling today?"></textarea>
+      <button type="submit" class="bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">Save Entry</button>
+    </form>
+  </section>
 
-    <section class="card">
-      <h2>Recent Entries</h2>
-      <div id="entries"></div>
-    </section>
-  </main>
+  <!-- Entries -->
+  <section class="max-w-4xl mx-auto my-8">
+    <h3 class="text-xl font-semibold mb-4 text-gray-700">Your Entries</h3>
+    <div id="entries" class="grid md:grid-cols-2 gap-4"></div>
+  </section>
 
-  <script src="/static/script.js"></script>
-</body>
-</html>
+  <!-- Charts -->
+  <section id="trends" class="max-w-4xl mx-auto my-12">
+    <h3 class="text-xl font-semibold mb-6 text-gray-700">Mood Trends</h3>
+    <div class="grid md:grid-cols-2 gap-8">
+      <canvas id="lineChart"></canvas>
+      <canvas id="pieChart"></canvas>
+    </div>
+  </section>
+
+  <footer clas
+
